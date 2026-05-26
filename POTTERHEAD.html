@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Drishhh — A Hogwarts Letter</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --parchment:#f5ead4;
+  --parchment2:#efe0c0;
+  --parchment3:#e8d5a8;
+  --ink:#2c1a0e;
+  --ink2:#4a2e18;
+  --gold:#c9940a;
+  --gold2:#e8b84b;
+  --scarlet:#8b0000;
+  --scarlet2:#a31515;
+  --green:#1a472a;
+  --silver:#8c8c9e;
+  --border:#b8954a;
+}
+html,body{
+  width:100%;min-height:100vh;
+  background:#0d0d1a;
+  font-family:'Nunito',sans-serif;
+  display:flex;align-items:center;justify-content:center;
+  overflow-x:hidden;
+}
+.starfield{position:fixed;inset:0;pointer-events:none;z-index:0;}
+.s{position:absolute;border-radius:50%;background:white;opacity:0;animation:twinkle var(--d) var(--dl) infinite;}
+@keyframes twinkle{0%,100%{opacity:0;}50%{opacity:var(--op);}}
+.sparks{position:fixed;inset:0;pointer-events:none;z-index:1;}
+.spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#e8b84b;opacity:0;animation:sparkFloat var(--d) var(--dl) ease-in-out infinite;}
+@keyframes sparkFloat{0%{opacity:0;transform:translateY(0) scale(0);}30%{opacity:1;transform:translateY(-30px) scale(1);}100%{opacity:0;transform:translateY(-80px) scale(0);}}
+.scene{position:relative;z-index:10;width:100%;max-width:480px;padding:1.5rem 1rem;text-align:center;}
+.screen{animation:revealIn 0.6s cubic-bezier(0.34,1.4,0.64,1);}
+@keyframes revealIn{from{opacity:0;transform:scale(0.88) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.parchment{background:var(--parchment);border:3px solid var(--border);border-radius:4px;position:relative;box-shadow:0 0 40px rgba(200,150,10,0.25),inset 0 0 60px rgba(180,130,40,0.1);}
+.parchment::before{content:'';position:absolute;inset:6px;border:1px solid var(--border);border-radius:2px;pointer-events:none;opacity:0.5;}
+.parchment::after{content:'❧';position:absolute;top:10px;left:12px;color:var(--gold);font-size:1rem;opacity:0.7;}
+.corner-tr{position:absolute;top:10px;right:12px;color:var(--gold);font-size:1rem;opacity:0.7;}
+.corner-bl{position:absolute;bottom:10px;left:12px;color:var(--gold);font-size:1rem;opacity:0.7;transform:scaleY(-1);}
+.corner-br{position:absolute;bottom:10px;right:12px;color:var(--gold);font-size:1rem;opacity:0.7;transform:scale(-1);}
+/* COVER */
+#screen-cover{display:flex;flex-direction:column;align-items:center;gap:1.1rem;}
+.hogwarts-seal{width:110px;height:110px;background:radial-gradient(circle at 40% 35%,#e8c96a,#c9940a 50%,#7a5a08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3rem;box-shadow:0 0 30px rgba(201,148,10,0.6),0 0 60px rgba(201,148,10,0.2);animation:sealGlow 3s ease-in-out infinite alternate;border:3px solid #e8b84b;}
+@keyframes sealGlow{from{box-shadow:0 0 20px rgba(201,148,10,0.5),0 0 40px rgba(201,148,10,0.2);}to{box-shadow:0 0 40px rgba(201,148,10,0.9),0 0 80px rgba(201,148,10,0.4);}}
+.cover-parchment{padding:2rem 1.75rem 1.75rem;width:100%;}
+.hogwarts-header{font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;opacity:0.9;}
+.cover-title{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;color:var(--scarlet);line-height:1.3;margin-bottom:0.5rem;}
+.cover-sub{font-family:'IM Fell English',serif;font-style:italic;font-size:0.95rem;color:var(--ink2);line-height:1.7;}
+.divider{text-align:center;color:var(--gold);font-size:0.8rem;letter-spacing:0.3em;margin:0.75rem 0;opacity:0.7;}
+.house-badges{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;margin-top:0.5rem;}
+.hbadge{border-radius:4px;padding:0.3rem 0.75rem;font-family:'Cinzel',serif;font-size:0.7rem;font-weight:600;letter-spacing:0.06em;}
+.hbadge.g{background:#740001;color:#f0c040;border:1px solid #f0c040;}
+.hbadge.s{background:#1a1a2e;color:#aaaacc;border:1px solid #aaaacc;}
+.hbadge.r{background:#0e1a40;color:#946b2d;border:1px solid #946b2d;}
+.hbadge.h{background:#372e29;color:#f0a500;border:1px solid #f0a500;}
+.btn{background:var(--scarlet);color:var(--parchment);border:2px solid var(--gold);padding:0.85rem 2.2rem;border-radius:3px;font-family:'Cinzel',serif;font-size:0.88rem;font-weight:600;cursor:pointer;letter-spacing:0.08em;transition:all 0.2s;box-shadow:0 4px 0 #5a0000,0 0 20px rgba(139,0,0,0.3);text-transform:uppercase;}
+.btn:hover{background:var(--scarlet2);transform:translateY(-2px);box-shadow:0 6px 0 #5a0000,0 0 30px rgba(139,0,0,0.5);}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 #5a0000;}
+/* QUIZ */
+#screen-quiz{display:none;}
+.spell-progress{width:100%;height:12px;background:var(--ink);border:1px solid var(--gold);border-radius:2px;margin-bottom:1.25rem;overflow:hidden;position:relative;}
+.spell-fill{height:100%;background:linear-gradient(90deg,var(--scarlet),var(--gold2));transition:width 0.6s cubic-bezier(0.34,1.4,0.64,1);width:0%;position:relative;}
+.spell-fill::after{content:'✦';position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--gold2);font-size:14px;text-shadow:0 0 8px var(--gold2);}
+.q-chapter{font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:0.75rem;}
+.q-scroll{padding:1.5rem 1.5rem 1.25rem;margin-bottom:0.9rem;}
+.q-text{font-family:'IM Fell English',serif;font-style:italic;font-size:1.18rem;color:var(--ink);line-height:1.5;min-height:55px;}
+.options{display:flex;flex-direction:column;gap:0.55rem;}
+.option{background:var(--parchment2);border:1.5px solid var(--border);border-radius:3px;padding:0.8rem 1rem;text-align:left;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:600;color:var(--ink);cursor:pointer;transition:all 0.18s;display:flex;align-items:center;gap:0.7rem;position:relative;overflow:hidden;}
+.option::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(201,148,10,0.15),transparent);opacity:0;transition:opacity 0.2s;}
+.option:hover{border-color:var(--gold);transform:translateX(5px);}
+.option:hover::before{opacity:1;}
+.option.correct{border-color:#2d6b35;background:#e8f5e9;color:#1a4726;animation:spellRight 0.4s ease;}
+.option.wrong{border-color:var(--scarlet);background:#fff0f0;color:#6b1a1a;animation:spellWrong 0.4s ease;}
+@keyframes spellRight{0%{transform:scale(1);}40%{transform:scale(1.03) translateX(4px);}100%{transform:scale(1);}}
+@keyframes spellWrong{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+.opt-rune{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border);background:var(--parchment3);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:0.72rem;font-weight:600;flex-shrink:0;color:var(--gold);transition:all 0.2s;}
+.option.correct .opt-rune{background:#2d6b35;color:white;border-color:#2d6b35;}
+.option.wrong .opt-rune{background:var(--scarlet);color:white;border-color:var(--scarlet);}
+.spell-feedback{background:var(--ink);border:1px solid var(--gold);border-radius:3px;padding:0.7rem 1rem;margin-top:0.6rem;font-family:'IM Fell English',serif;font-style:italic;font-size:0.86rem;color:var(--gold2);line-height:1.55;opacity:0;transform:translateY(5px);transition:opacity 0.3s,transform 0.3s;text-align:left;}
+.spell-feedback.show{opacity:1;transform:translateY(0);}
+/* LETTER */
+#screen-letter{display:none;}
+.letter-parchment{overflow:hidden;}
+.letter-header{background:var(--scarlet);padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);}
+.letter-header-left{font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.12em;color:var(--gold2);text-transform:uppercase;line-height:1.6;}
+.score-crest{background:var(--gold);color:var(--scarlet);border-radius:3px;padding:0.3rem 0.8rem;font-family:'Cinzel',serif;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;}
+.letter-body-wrap{padding:1.5rem 1.5rem 1.25rem;}
+.letter-salutation{font-family:'Cinzel',serif;font-size:1.15rem;font-weight:600;color:var(--scarlet);margin-bottom:0.25rem;}
+.letter-dear{font-family:'IM Fell English',serif;font-style:italic;font-size:0.88rem;color:var(--gold);margin-bottom:1.1rem;display:block;}
+.letter-text{font-family:'IM Fell English',serif;font-size:0.93rem;color:var(--ink2);line-height:1.9;text-align:left;}
+.letter-text p{margin-bottom:0.9rem;}
+.hi{color:var(--scarlet);font-weight:700;font-family:'Cinzel',serif;font-style:normal;font-size:0.9rem;}
+.glo{color:var(--gold);font-weight:700;font-family:'Cinzel',serif;font-style:normal;font-size:0.9rem;}
+.letter-sign{margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);text-align:right;}
+.letter-sign-name{font-family:'Cinzel',serif;font-size:0.9rem;color:var(--scarlet);}
+.letter-sign-sub{font-family:'IM Fell English',serif;font-style:italic;font-size:0.78rem;color:var(--gold);margin-top:0.2rem;}
+.replay-btn{margin-top:1rem;background:transparent;border:1.5px solid var(--silver);color:var(--silver);border-radius:3px;padding:0.55rem 1.4rem;font-family:'Cinzel',serif;font-size:0.75rem;cursor:pointer;letter-spacing:0.08em;transition:all 0.2s;text-transform:uppercase;}
+.replay-btn:hover{border-color:var(--gold);color:var(--gold2);}
+.burst-wrap{position:fixed;inset:0;pointer-events:none;z-index:200;}
+.burst-p{position:absolute;font-size:1.2rem;opacity:0;animation:burstFly var(--d) var(--dl) ease-out forwards;}
+@keyframes burstFly{0%{opacity:1;transform:translate(0,0) scale(0.5) rotate(0deg);}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(1.2) rotate(var(--tr));}}
+</style>
+</head>
+<body>
+<div class="starfield" id="starfield"></div>
+<div class="sparks" id="sparks"></div>
+<div class="scene">
+
+  <!-- COVER -->
+  <div id="screen-cover" class="screen">
+    <div class="hogwarts-seal">&#x1F989;</div>
+    <div class="parchment cover-parchment">
+      <span class="corner-tr">&#x275B;</span>
+      <span class="corner-bl">&#x275B;</span>
+      <span class="corner-br">&#x275B;</span>
+      <div class="hogwarts-header">Hogwarts School of Witchcraft &amp; Wizardry</div>
+      <div class="divider">&#x2756; &#x2756; &#x2756;</div>
+      <div class="cover-title">A Personal Owl-Post<br>for Miss Drishhh</div>
+      <div class="cover-sub" style="margin-top:0.6rem">
+        Headmistress McGonagall has prepared<br>
+        a very special enchanted quiz for you.<br>
+        <em>Your letter awaits at the end.</em> &#x1FA84;
+      </div>
+      <div class="divider" style="margin-top:0.75rem">&#x2014; &#x2756; &#x2014;</div>
+      <div class="house-badges">
+        <span class="hbadge g">Gryffindor</span>
+        <span class="hbadge s">Slytherin</span>
+        <span class="hbadge r">Ravenclaw</span>
+        <span class="hbadge h">Hufflepuff</span>
+      </div>
+    </div>
+    <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:0.85rem;color:#aaa;line-height:1.65;max-width:300px;">
+      Five questions stand between you and your letter.<br>
+      The magic is already inside you, Drishhh. &#x2B50;
+    </p>
+    <button class="btn" onclick="startGame()">&#x1FA84; Open Your Letter</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="screen-quiz" class="screen">
+    <div class="spell-progress"><div class="spell-fill" id="progressFill"></div></div>
+    <div class="q-chapter" id="qChapter">&#x2756; Spell I of V &#x2756;</div>
+    <div class="parchment q-scroll">
+      <span class="corner-tr">&#x275B;</span>
+      <div class="q-text" id="qText"></div>
+    </div>
+    <div class="options" id="optionsWrap"></div>
+    <div class="spell-feedback" id="feedback"></div>
+  </div>
+
+  <!-- LETTER -->
+  <div id="screen-letter" class="screen">
+    <div class="parchment letter-parchment">
+      <div class="letter-header">
+        <div class="letter-header-left">
+          Hogwarts School<br>of Witchcraft &amp; Wizardry<br>
+          <span style="opacity:0.7;font-size:0.65rem">Owl-Post &middot; Personal &amp; Confidential</span>
+        </div>
+        <div class="score-crest" id="scoreCrest">&#x2756; 5/5</div>
+      </div>
+      <div class="letter-body-wrap">
+        <div class="letter-salutation">Miss Drishhh,</div>
+        <span class="letter-dear">~ We are pleased to inform you of the following ~</span>
+        <div class="letter-text" id="letterText"></div>
+        <div class="letter-sign">
+          <div class="letter-sign-name">Minerva McGonagall</div>
+          <div class="letter-sign-sub">Headmistress, Hogwarts School of Witchcraft &amp; Wizardry</div>
+          <div style="margin-top:0.5rem;font-size:1.2rem">&#x1F989; &#x1F56F;&#xFE0F; &#x26A1;</div>
+        </div>
+      </div>
+    </div>
+    <button class="replay-btn" onclick="replay()">&#x21BA; Cast Again</button>
+  </div>
+
+</div>
+<div class="burst-wrap" id="burstWrap"></div>
+
+<script>
+var questions = [
+  {
+    q: "What spell is used to disarm an opponent in a duel?",
+    opts: ["Accio — the summoning charm","Expelliarmus — the disarming spell","Stupefy — the stunning spell","Lumos — to light the darkness"],
+    answer: 1,
+    feedback: "Expelliarmus — Harry's favourite. Not the flashiest spell, but the one that wins in the end. The quiet ones always do.",
+    chapter: "Spell I of V · Duelling"
+  },
+  {
+    q: "What creature guards the vaults of Gringotts deep underground?",
+    opts: ["A Basilisk","A Norwegian Ridgeback","A Ukrainian Ironbelly Dragon","A Hungarian Horntail"],
+    answer: 2,
+    feedback: "A Ukrainian Ironbelly. Blind, enormous, ancient — freed by an unlikely trio. The most magnificent things are often kept hidden.",
+    chapter: "Spell II of V · Magical Creatures"
+  },
+  {
+    q: "What is the incantation for the spell that produces a Patronus?",
+    opts: ["Expecto Patronum — I await a guardian","Riddikulus — for boggart defeat","Protego — a shield charm","Lumos Maxima — great light"],
+    answer: 0,
+    feedback: "Expecto Patronum. Powered entirely by your happiest memory. The light you produce is uniquely yours.",
+    chapter: "Spell III of V · Patronus Charm"
+  },
+  {
+    q: "The Mirror of Erised shows the viewer their deepest desire. What does 'Erised' spell backwards?",
+    opts: ["Desire — reversed in the mirror","Magic — an ancient rune word","Reflect — old Latin","Seeker — a Quidditch term"],
+    answer: 0,
+    feedback: "'Erised' is 'Desire' backwards — the mirror shows what the heart truly wants, not what the eye sees.",
+    chapter: "Spell IV of V · Ancient Magic"
+  },
+  {
+    q: "What does 'Drishti' — the root of Miss Drishhh's name — mean in Sanskrit?",
+    opts: ["The moon at midnight","Vision and sight — the power to truly see","A rare magical flower","Light through enchanted glass"],
+    answer: 1,
+    feedback: "Vision. The one who sees what others cannot. She was born with the rarest magic of all — clarity of sight.",
+    chapter: "Spell V of V · The Name Spell"
+  }
+];
+
+var romans = [
+  "\u2756 Spell I of V \u2756",
+  "\u2756 Spell II of V \u2756",
+  "\u2756 Spell III of V \u2756",
+  "\u2756 Spell IV of V \u2756",
+  "\u2756 Spell V of V \u2756"
+];
+
+var current = 0, score = 0, answered = false;
+
+function makeStars() {
+  var sf = document.getElementById('starfield');
+  for (var i = 0; i < 120; i++) {
+    var s = document.createElement('div');
+    s.className = 's';
+    var sz = 0.5 + Math.random() * 2;
+    s.style.cssText = 'left:' + (Math.random()*100) + '%;top:' + (Math.random()*100) + '%;width:' + sz + 'px;height:' + sz + 'px;--d:' + (2+Math.random()*5) + 's;--dl:' + (Math.random()*6) + 's;--op:' + (0.3+Math.random()*0.7);
+    sf.appendChild(s);
+  }
+}
+
+function makeSparks() {
+  var sp = document.getElementById('sparks');
+  for (var i = 0; i < 30; i++) {
+    var s = document.createElement('div');
+    s.className = 'spark';
+    s.style.cssText = 'left:' + (Math.random()*100) + '%;top:' + (60+Math.random()*40) + '%;--d:' + (2+Math.random()*3) + 's;--dl:' + (Math.random()*5) + 's;';
+    sp.appendChild(s);
+  }
+}
+
+function startGame() {
+  document.getElementById('screen-cover').style.display = 'none';
+  var q = document.getElementById('screen-quiz');
+  q.style.display = 'block';
+  q.className = 'screen';
+  current = 0; score = 0;
+  renderQ();
+}
+
+function renderQ() {
+  answered = false;
+  var q = questions[current];
+  document.getElementById('qChapter').textContent = romans[current];
+  document.getElementById('qText').textContent = q.q;
+  document.getElementById('progressFill').style.width = (current / questions.length * 100) + '%';
+  var fb = document.getElementById('feedback');
+  fb.textContent = '';
+  fb.classList.remove('show');
+
+  var wrap = document.getElementById('optionsWrap');
+  wrap.innerHTML = '';
+  var runes = ['I','II','III','IV'];
+  for (var i = 0; i < q.opts.length; i++) {
+    var btn = document.createElement('button');
+    btn.className = 'option';
+    btn.innerHTML = '<span class="opt-rune">' + runes[i] + '</span><span>' + q.opts[i] + '</span>';
+    (function(idx, b){ b.onclick = function(){ pick(idx, b); }; })(i, btn);
+    wrap.appendChild(btn);
+  }
+}
+
+function pick(i, btn) {
+  if (answered) return;
+  answered = true;
+  var q = questions[current];
+  var all = document.querySelectorAll('.option');
+  for (var k = 0; k < all.length; k++) all[k].style.pointerEvents = 'none';
+  if (i === q.answer) { btn.classList.add('correct'); score++; spellBurst(true); }
+  else { btn.classList.add('wrong'); all[q.answer].classList.add('correct'); spellBurst(false); }
+  var fb = document.getElementById('feedback');
+  fb.textContent = '\u2756 ' + q.feedback;
+  fb.classList.add('show');
+  setTimeout(function() {
+    current++;
+    if (current < questions.length) renderQ();
+    else showLetter();
+  }, 2200);
+}
+
+function spellBurst(correct) {
+  var wrap = document.getElementById('burstWrap');
+  var emojis = correct ? ['\u2728','\u2B50','\uD83C\uDF1F','\uD83D\uDCAB','\uD83E\uFA84','\u2756'] : ['\uD83D\uDCA8','\uD83C\uDF11','\uD83C\uDF00','\uD83D\uDD2E'];
+  var count = correct ? 18 : 8;
+  for (var i = 0; i < count; i++) {
+    var p = document.createElement('div');
+    p.className = 'burst-p';
+    var tx = (Math.random()*200-100) + 'px';
+    var ty = (-(80+Math.random()*120)) + 'px';
+    var tr = (Math.random()*360) + 'deg';
+    p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    p.style.cssText = 'left:' + (35+Math.random()*30) + '%;top:50%;--d:' + (0.8+Math.random()*0.6) + 's;--dl:' + (Math.random()*0.3) + 's;--tx:' + tx + ';--ty:' + ty + ';--tr:' + tr;
+    wrap.appendChild(p);
+  }
+  setTimeout(function(){ wrap.innerHTML = ''; }, 2000);
+}
+
+var msg5 = '<p>Perfect. Every single one. But then again \u2014 <span class="hi">of course you did.</span></p>'
+  + '<p>Miss Drishhh, the Sorting Hat deliberated for precisely three seconds before making its decision. Not because it was unsure \u2014 but because it wanted to savour the moment.</p>'
+  + '<p>You carry <span class="glo">Patronus energy</span>. The kind that fills a room with light before anyone even notices you\'ve cast anything. Your happiness is a spell in itself \u2014 and it protects everyone around you.</p>'
+  + '<p>Like the Mirror of Erised, you reflect the <span class="hi">best</span> in people back to them. You help others see themselves more kindly. That is a rare and extraordinary magic.</p>'
+  + '<p>And your name \u2014 Drishti \u2014 <span class="glo">vision</span>. You see what others miss. The beauty in ordinary moments. The good in difficult people. The magic hiding in plain sight.</p>'
+  + '<p>Hogwarts does not send letters to ordinary witches. This one was written for someone whose existence makes the whole castle warmer. <span class="hi">That is you.</span> \uD83D\uDD6F\uFE0F</p>';
+
+var msgDef = '<p>The score matters not. <span class="glo">This was never a test of knowledge.</span></p>'
+  + '<p>It was a test of heart \u2014 and you passed the moment you opened this letter.</p>'
+  + '<p>Miss Drishhh, Expelliarmus works because it is <span class="hi">honest</span>. You don\'t need to overpower anyone. Your presence alone is enough to disarm.</p>'
+  + '<p>The Dragon in the vault was kept in the dark for years and still breathed fire. You carry that same quiet, magnificent <span class="glo">strength.</span></p>'
+  + '<p>Your Patronus, whatever form it takes, is powerful. Because it is powered by who you are \u2014 and that is <span class="hi">more than enough.</span></p>'
+  + '<p>Drishti means vision. You see what others don\'t. Magic no one else notices. That\'s the rarest gift. <span class="glo">And it\'s yours.</span> \uD83E\uFA84</p>';
+
+function showLetter() {
+  document.getElementById('screen-quiz').style.display = 'none';
+  var ls = document.getElementById('screen-letter');
+  ls.style.display = 'block';
+  ls.className = 'screen';
+  document.getElementById('scoreCrest').textContent = score === 5 ? '\u2756 5/5 \u2014 Perfect' : '\u2756 ' + score + '/5';
+  document.getElementById('letterText').innerHTML = score === 5 ? msg5 : msgDef;
+  grandFinale();
+}
+
+function grandFinale() {
+  var wrap = document.getElementById('burstWrap');
+  wrap.innerHTML = '';
+  var emojis = ['\u2B50','\u2728','\uD83C\uDF1F','\uD83D\uDCAB','\uD83E\uFA84','\uD83E\uDDB9','\u26A1','\uD83D\uDD6F\uFE0F','\uD83C\uDF19'];
+  for (var i = 0; i < 50; i++) {
+    var p = document.createElement('div');
+    p.className = 'burst-p';
+    var tx = (Math.random()*300-150) + 'px';
+    var ty = (-(100+Math.random()*200)) + 'px';
+    var tr = (Math.random()*720-360) + 'deg';
+    p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    p.style.cssText = 'left:' + (Math.random()*100) + '%;top:' + (40+Math.random()*60) + '%;--d:' + (1.5+Math.random()*2) + 's;--dl:' + (Math.random()*2) + 's;--tx:' + tx + ';--ty:' + ty + ';--tr:' + tr + ';font-size:' + (0.9+Math.random()*0.8) + 'rem';
+    wrap.appendChild(p);
+  }
+  setTimeout(function(){ wrap.innerHTML = ''; }, 6000);
+}
+
+function replay() {
+  document.getElementById('screen-letter').style.display = 'none';
+  var c = document.getElementById('screen-cover');
+  c.style.display = 'flex';
+  c.className = 'screen';
+}
+
+makeStars();
+makeSparks();
+</script>
+</body>
+</html>
